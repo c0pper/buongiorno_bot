@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  my-python-app:
+    image: buongiorno-bot:latest
+    environment:
+      - TOKEN=value1
+      - OPENAI=value2
