@@ -35,11 +35,13 @@ def check_job_exists(name: str, context: ContextTypes.DEFAULT_TYPE) -> bool:
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Add a job to the queue."""
     chat_id = update.effective_message.chat_id
+    hour = 7
+    minute = 10
     if check_job_exists(str(chat_id), context):
         text = f"Bot in funzione"
         await update.effective_message.reply_text(text)
     else:
-        context.job_queue.run_daily(send_buongiorno, time(hour=7, minute=randint(5,50), tzinfo=tz_Rome), days=(0, 1, 2, 3, 4, 5, 6),
+        context.job_queue.run_daily(send_buongiorno, time(hour=hour, minute=minute, tzinfo=tz_Rome), days=(0, 1, 2, 3, 4, 5, 6),
                                     name=str(chat_id), chat_id=chat_id)
 
         text = f"Bot avviato."
